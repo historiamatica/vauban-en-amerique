@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Zonedevisibilitestime_1.js"></script>
+        <script src="data/Premierfortruines16631700_2.js"></script>
+        <script src="data/Deuximefortdeboissuppos17011709_3.js"></script>
+        <script src="data/FortChamblyen1718_4.js"></script>
+        <script src="data/FortChamblyen1750_5.js"></script>
+        <script src="data/FortChamblyen1800_6.js"></script>
+        <script src="data/BaseChamblyen1851_7.js"></script>
+        <script src="data/Archives_8.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:13
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        var layer_Fonddecarte_0 = L.tileLayer('http://tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '<a href="http://maps.stamen.com/">Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL</a>',
+        });
+        layer_Fonddecarte_0;
+        map.addLayer(layer_Fonddecarte_0);
+        function pop_Zonedevisibilitestime_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Explication</strong><br />' + (feature.properties['utile'] !== null ? Autolinker.link(String(feature.properties['utile'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Zonedevisibilitestime_1_0() {
+            return {
+                pane: 'pane_Zonedevisibilitestime_1',
+                opacity: 1,
+                color: 'rgba(255,127,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,127,0,0.0)',
+            }
+        }
+        map.createPane('pane_Zonedevisibilitestime_1');
+        map.getPane('pane_Zonedevisibilitestime_1').style.zIndex = 401;
+        map.getPane('pane_Zonedevisibilitestime_1').style['mix-blend-mode'] = 'normal';
+        var layer_Zonedevisibilitestime_1 = new L.geoJson(json_Zonedevisibilitestime_1, {
+            attribution: '',
+            pane: 'pane_Zonedevisibilitestime_1',
+            onEachFeature: pop_Zonedevisibilitestime_1,
+            style: style_Zonedevisibilitestime_1_0,
+        });
+        bounds_group.addLayer(layer_Zonedevisibilitestime_1);
+        function pop_Premierfortruines16631700_2(feature, layer) {
+        }
+
+        function style_Premierfortruines16631700_2_0() {
+            return {
+                pane: 'pane_Premierfortruines16631700_2',
+                opacity: 1,
+                color: 'rgba(103,128,228,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_Premierfortruines16631700_2');
+        map.getPane('pane_Premierfortruines16631700_2').style.zIndex = 402;
+        map.getPane('pane_Premierfortruines16631700_2').style['mix-blend-mode'] = 'normal';
+        var layer_Premierfortruines16631700_2 = new L.geoJson(json_Premierfortruines16631700_2, {
+            attribution: '',
+            pane: 'pane_Premierfortruines16631700_2',
+            onEachFeature: pop_Premierfortruines16631700_2,
+            style: style_Premierfortruines16631700_2_0,
+        });
+        bounds_group.addLayer(layer_Premierfortruines16631700_2);
+        function pop_Deuximefortdeboissuppos17011709_3(feature, layer) {
+        }
+
+        function style_Deuximefortdeboissuppos17011709_3_0() {
+            return {
+                pane: 'pane_Deuximefortdeboissuppos17011709_3',
+                opacity: 1,
+                color: 'rgba(102,51,24,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(106,103,197,1.0)',
+            }
+        }
+        map.createPane('pane_Deuximefortdeboissuppos17011709_3');
+        map.getPane('pane_Deuximefortdeboissuppos17011709_3').style.zIndex = 403;
+        map.getPane('pane_Deuximefortdeboissuppos17011709_3').style['mix-blend-mode'] = 'normal';
+        var layer_Deuximefortdeboissuppos17011709_3 = new L.geoJson(json_Deuximefortdeboissuppos17011709_3, {
+            attribution: '',
+            pane: 'pane_Deuximefortdeboissuppos17011709_3',
+            onEachFeature: pop_Deuximefortdeboissuppos17011709_3,
+            style: style_Deuximefortdeboissuppos17011709_3_0,
+        });
+        bounds_group.addLayer(layer_Deuximefortdeboissuppos17011709_3);
+        function pop_FortChamblyen1718_4(feature, layer) {
+        }
+
+        function style_FortChamblyen1718_4_0() {
+            return {
+                pane: 'pane_FortChamblyen1718_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,54,218,1.0)',
+            }
+        }
+        map.createPane('pane_FortChamblyen1718_4');
+        map.getPane('pane_FortChamblyen1718_4').style.zIndex = 404;
+        map.getPane('pane_FortChamblyen1718_4').style['mix-blend-mode'] = 'normal';
+        var layer_FortChamblyen1718_4 = new L.geoJson(json_FortChamblyen1718_4, {
+            attribution: '',
+            pane: 'pane_FortChamblyen1718_4',
+            onEachFeature: pop_FortChamblyen1718_4,
+            style: style_FortChamblyen1718_4_0,
+        });
+        bounds_group.addLayer(layer_FortChamblyen1718_4);
+        function pop_FortChamblyen1750_5(feature, layer) {
+        }
+
+        function style_FortChamblyen1750_5_0() {
+            return {
+                pane: 'pane_FortChamblyen1750_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,86,1.0)',
+            }
+        }
+        map.createPane('pane_FortChamblyen1750_5');
+        map.getPane('pane_FortChamblyen1750_5').style.zIndex = 405;
+        map.getPane('pane_FortChamblyen1750_5').style['mix-blend-mode'] = 'normal';
+        var layer_FortChamblyen1750_5 = new L.geoJson(json_FortChamblyen1750_5, {
+            attribution: '',
+            pane: 'pane_FortChamblyen1750_5',
+            onEachFeature: pop_FortChamblyen1750_5,
+            style: style_FortChamblyen1750_5_0,
+        });
+        bounds_group.addLayer(layer_FortChamblyen1750_5);
+        function pop_FortChamblyen1800_6(feature, layer) {
+        }
+
+        function style_FortChamblyen1800_6_0() {
+            return {
+                pane: 'pane_FortChamblyen1800_6',
+                opacity: 1,
+                color: 'rgba(247,247,247,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(177,35,35,1.0)',
+            }
+        }
+        map.createPane('pane_FortChamblyen1800_6');
+        map.getPane('pane_FortChamblyen1800_6').style.zIndex = 406;
+        map.getPane('pane_FortChamblyen1800_6').style['mix-blend-mode'] = 'normal';
+        var layer_FortChamblyen1800_6 = new L.geoJson(json_FortChamblyen1800_6, {
+            attribution: '',
+            pane: 'pane_FortChamblyen1800_6',
+            onEachFeature: pop_FortChamblyen1800_6,
+            style: style_FortChamblyen1800_6_0,
+        });
+        bounds_group.addLayer(layer_FortChamblyen1800_6);
+        function pop_BaseChamblyen1851_7(feature, layer) {
+        }
+
+        function style_BaseChamblyen1851_7_0() {
+            return {
+                pane: 'pane_BaseChamblyen1851_7',
+                opacity: 1,
+                color: 'rgba(247,247,247,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(103,6,6,1.0)',
+            }
+        }
+        map.createPane('pane_BaseChamblyen1851_7');
+        map.getPane('pane_BaseChamblyen1851_7').style.zIndex = 407;
+        map.getPane('pane_BaseChamblyen1851_7').style['mix-blend-mode'] = 'normal';
+        var layer_BaseChamblyen1851_7 = new L.geoJson(json_BaseChamblyen1851_7, {
+            attribution: '',
+            pane: 'pane_BaseChamblyen1851_7',
+            onEachFeature: pop_BaseChamblyen1851_7,
+            style: style_BaseChamblyen1851_7_0,
+        });
+        bounds_group.addLayer(layer_BaseChamblyen1851_7);
+        map.addLayer(layer_BaseChamblyen1851_7);
+        function pop_Archives_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Année</strong><br />' + (feature.properties['annee'] !== null ? Autolinker.link(String(feature.properties['annee'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Archive</strong><br />' + (feature.properties['img'] !== null ? Autolinker.link(String(feature.properties['img'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Archives_8_0() {
+            return {
+                pane: 'pane_Archives_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/photo.svg',
+            iconSize: [38.0, 38.0]
+        }),
+            }
+        }
+        map.createPane('pane_Archives_8');
+        map.getPane('pane_Archives_8').style.zIndex = 408;
+        map.getPane('pane_Archives_8').style['mix-blend-mode'] = 'normal';
+        var layer_Archives_8 = new L.geoJson(json_Archives_8, {
+            attribution: '',
+            pane: 'pane_Archives_8',
+            onEachFeature: pop_Archives_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Archives_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Archives_8);
+        map.addLayer(layer_Archives_8);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legende/Archives_8.png" /> Archives': layer_Archives_8,'<img src="legende/BaseChamblyen1851_7.png" /> Base Chambly en 1851': layer_BaseChamblyen1851_7,'<img src="legende/FortChamblyen1800_6.png" /> Fort Chambly en 1800': layer_FortChamblyen1800_6,'<img src="legende/FortChamblyen1750_5.png" /> Fort Chambly en 1750': layer_FortChamblyen1750_5,'<img src="legende/FortChamblyen1718_4.png" /> Fort Chambly en 1718': layer_FortChamblyen1718_4,'<img src="legende/Deuximefortdeboissuppos17011709_3.png" /> Deuxième fort de bois (supposé) (1701-1709)': layer_Deuximefortdeboissuppos17011709_3,'<img src="legende/Premierfortruines16631700_2.png" /> Premier fort (ruines) (1663-1700)': layer_Premierfortruines16631700_2,'<img src="legende/Zonedevisibilitestime_1.png" /> Zone de visibilité estimée': layer_Zonedevisibilitestime_1,"Fond de carte": layer_Fonddecarte_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>

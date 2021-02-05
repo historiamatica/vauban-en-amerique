@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="data/Fortificationsvaubanesques_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:16, minZoom:4
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+            map.setMaxBounds(map.getBounds());
+        }
+        var layer_Fonddecarte_0 = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '',
+        });
+        layer_Fonddecarte_0;
+        map.addLayer(layer_Fonddecarte_0);
+        function pop_Fortificationsvaubanesques_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Année</strong><br />' + (feature.properties['annee'] !== null ? Autolinker.link(String(feature.properties['annee'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Nom</strong><br />' + (feature.properties['Nom'] !== null ? Autolinker.link(String(feature.properties['Nom'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Rôle</strong><br />' + (feature.properties['role'] !== null ? Autolinker.link(String(feature.properties['role'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Influence de Vauban</strong><br />' + (feature.properties['Imp'] !== null ? Autolinker.link(String(feature.properties['Imp'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Lien</strong><br />' + (feature.properties['code'] !== null ? Autolinker.link(String(feature.properties['code'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Fortificationsvaubanesques_1_0(feature) {
+            switch(String(feature.properties['q2wHide_role_simpl'])) {
+                case 'Garnison et arsenal':
+                    return {
+                pane: 'pane_Fortificationsvaubanesques_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/tourist_battlefield.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Place forte':
+                    return {
+                pane: 'pane_Fortificationsvaubanesques_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/tourist_beach.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Pré carré':
+                    return {
+                pane: 'pane_Fortificationsvaubanesques_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/background_square_rounded.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Prison':
+                    return {
+                pane: 'pane_Fortificationsvaubanesques_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/amenity_police.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Tour défensive':
+                    return {
+                pane: 'pane_Fortificationsvaubanesques_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/barrier_bollard.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+                case 'Ville fortifiée':
+                    return {
+                pane: 'pane_Fortificationsvaubanesques_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/background_security_02.svg',
+            iconSize: [30.4, 30.4]
+        }),
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Fortificationsvaubanesques_1');
+        map.getPane('pane_Fortificationsvaubanesques_1').style.zIndex = 401;
+        map.getPane('pane_Fortificationsvaubanesques_1').style['mix-blend-mode'] = 'normal';
+        var layer_Fortificationsvaubanesques_1 = new L.geoJson(json_Fortificationsvaubanesques_1, {
+            attribution: '',
+            pane: 'pane_Fortificationsvaubanesques_1',
+            onEachFeature: pop_Fortificationsvaubanesques_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Fortificationsvaubanesques_1_0(feature));
+            },
+        });
+        var cluster_Fortificationsvaubanesques_1 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_Fortificationsvaubanesques_1.addLayer(layer_Fortificationsvaubanesques_1);
+
+        bounds_group.addLayer(layer_Fortificationsvaubanesques_1);
+        cluster_Fortificationsvaubanesques_1.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Fortifications vaubanesques<br /><table><tr><td style="text-align: center;"><img src="legende/Fortificationsvaubanesques_1_Garnisonetarsenal0.png" /></td><td>Garnison et arsenal</td></tr><tr><td style="text-align: center;"><img src="legende/Fortificationsvaubanesques_1_Placeforte1.png" /></td><td>Place forte</td></tr><tr><td style="text-align: center;"><img src="legende/Fortificationsvaubanesques_1_Precarre2.png" /></td><td>Pré carré</td></tr><tr><td style="text-align: center;"><img src="legende/Fortificationsvaubanesques_1_Prison3.png" /></td><td>Prison</td></tr><tr><td style="text-align: center;"><img src="legende/Fortificationsvaubanesques_1_Tourdefensive4.png" /></td><td>Tour défensive</td></tr><tr><td style="text-align: center;"><img src="legende/Fortificationsvaubanesques_1_Villefortifiee5.png" /></td><td>Ville fortifiée</td></tr></table>': cluster_Fortificationsvaubanesques_1,"Fond de carte": layer_Fonddecarte_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>

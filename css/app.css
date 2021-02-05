@@ -1,0 +1,139 @@
+html, body{
+  margin: 0;
+  padding:0;
+  /*overflow: hidden;*/
+  scroll: hidden;
+  display: block;
+  border:0;
+  background-color: #262632;
+  height: 100%;
+  width: 100%;
+  font-family: 'Questrial', sans-serif;
+  }
+
+
+#cesiumContainer{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#ligne_temps{
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 90%;
+    height: 6%;
+    z-index: 1500;
+    background-color: #1e1e1e;
+    box-shadow: 0px 0px 10px #1e1e1e;
+}
+
+#timeline{
+    height: 60%;
+    width: 96%;
+    position: absolute;
+    bottom: 20%;
+    left: 2%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 96%;
+  height: 1%;
+  border-radius: 5px;   
+  background: #d3d3d3;
+  outline: none;
+  opacity: 1;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  position: absolute;
+  left: 2%;
+  bottom:20%;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 40px;
+  
+  background: #c13a3a;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #c13a3a;
+  cursor: pointer;
+}
+
+#afficher_annee{
+    position: absolute;
+    top: 0;
+    left: 46%;
+    text-align: center;
+    width: 6%;
+    background-color: #1e1e1e;
+    color: #fff;
+    z-index:999;
+    margin: 0;
+    padding: 1% 0;
+    font-size: 20px;
+    box-shadow: 0px 0px 10px #1e1e1e;
+}
+
+#info{
+    position: absolute;
+    bottom: 11%;
+    left: 5%;
+    background-color: #fff;
+    width: 25%;
+    height: 89%;
+    z-index:1400;
+    box-shadow: 0 0 10px #000;
+}
+
+#info_view{
+    width: 96%;
+    height: 86%;
+    position: absolute;
+    bottom: 2%;
+    left: 2%;
+}
+
+div, h3 {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */      
+}
+
+#back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10%;
+    width: 50px;
+    background: #000;
+    color: #fff;
+    vertical-align: center;
+    line-height: 100%;
+    text-align: center;
+    font-size: 40px;
+    transition: 0.5s;
+    border:none;
+    cursor: pointer;
+    z-index: 1600;
+}
+
+#back:hover{
+    background: #d84141;
+    
+}
+
+
